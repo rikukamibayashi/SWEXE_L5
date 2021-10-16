@@ -1,0 +1,17 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<% @users.each do |user| %>
+  <p>
+    <%= user.text_field :uid %>
+    <%= user.uid %>
+    <%= user.pass %>
+    <%= link_to '削除', "/users/#{user.id}", method: :delete %>
+  </p>
+  
+<% end %>
+
+<p><%= link_to 'ユーザ登録', '/users/new' %></p>
+
+<p><%= link_to 'メイン', root_path %></p>
