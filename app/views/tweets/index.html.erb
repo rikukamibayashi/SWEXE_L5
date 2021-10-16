@@ -1,0 +1,16 @@
+<% if flash[:notice] %>
+  <%= flash[:notice] %>
+<% end %>
+
+<% @tweets.each do |tweet| %>
+  <p>
+    <%= tweet.message %>
+    <%= link_to '削除', "/tweets/#{tweet.id}", method: :delete %>
+  </p>
+  
+<% end %>
+
+<p><%= link_to 'ツイートする', '/tweets/new' %></p>
+
+
+<%= link_to 'ログアウト', tops_logout_path %>
