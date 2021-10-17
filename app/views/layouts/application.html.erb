@@ -11,5 +11,11 @@
 
   <body>
     <%= yield %>
+    <p>
+    <% if session[:login_uid] %>
+      ログイン中
+    <% else %>
+      ログインしていません
+    <% end %>
   </body>
 </html>

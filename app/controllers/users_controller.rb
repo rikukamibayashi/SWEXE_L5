@@ -9,10 +9,13 @@ class UsersController < ApplicationController
     
     def create
         logger.debug "---------------"
-        @user = User.new(uid: params[:user][:uid], pass: params[:user][:pass])
+        uid = params[:user][:uid]
+        pass =  params[:user][:pass]
+        $login_password = BCrypt::Password.create(pass)
+        @user =User.new(uid: uid,pass: $login_password)
         if @user.save
-            flash[:notice] = 'ツイートできました'
-             redirect_to users_path
+            flash[:notice] = 'ユーザ登録できました'
+            redirect_to users_path
         else
             render 'new' 
         redirect_to root_path
@@ -22,8 +25,8 @@ class UsersController < ApplicationController
     def destroy
         user = User.find(params[:id])
         if user.destroy
-            flash[:notice] = 'ツイートを削除しました'
+            flash[:notice] = 'ユーザを削除しました'
         end
-        redirect_to root_path
+        redirect_to users_path
     end
 end

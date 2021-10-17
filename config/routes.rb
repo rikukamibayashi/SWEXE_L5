@@ -1,9 +1,16 @@
 Rails.application.routes.draw do
     resources :users
-    root 'users#index'
-    get 'users/index'
+    get 'get_users/:id', to: 'users#get_users'
     
     resources :tweets
     root 'tweets#index'
-    get 'tweets/index'
+    get 'get_tweets/:id', to: 'tweets#get_tweets'
+    
+    get 'top/main'
+    post 'top/login'
+    get 'top/logout'
+    
+    resources :likes
+    root 'likes#index'
+    get 'likes/index'
 end
